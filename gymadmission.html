@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gym Application Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      border: 1px solid gray;
+      padding: 20px;
+      border-radius: 3px;
+      width: 350px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+
+    .success {
+      color: green;
+      font-size: 13px;
+    }
+
+    input:disabled {
+      background-color: #eee;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <form id="gymForm">
+    <h3>Gym Application Form</h3>
+
+    <label>Full Name:</label>
+    <input type="text" id="name" placeholder="Enter name">
+    <div id="nameError" class="error"></div>
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter email">
+    <div id="emailError" class="error"></div>
+
+    <label>Phone Number:</label>
+    <input type="number" id="phone" placeholder="Enter number">
+    <div id="phoneError" class="error"></div>
+
+    <label>Date of Birth:</label>
+    <input type="date" id="dob">
+    <div id="dobError" class="error"></div>
+
+    <label>Password:</label>
+    <input type="password" id="password">
+    <div id="passwordError" class="error"></div>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirmPassword">
+    <div id="confirmPasswordError" class="error"></div>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female
+    <div id="genderError" class="error"></div><br>
+
+    <label>Membership Type:</label>
+    <select id="membership">
+      <option value="">Select type</option>
+      <option>Monthly</option>
+      <option>Quarterly</option>
+      <option>Yearly</option>
+    </select>
+    <div id="membershipError" class="error"></div>
+
+    <label>Upload Photo:</label>
+    <input type="file" id="photo">
+    <div id="photoError" class="error"></div>
+
+    <label><input type="checkbox" id="agree"> I agree to terms</label>
+    <div id="agreeError" class="error"></div>
+
+    <button type="submit" id="submitBtn" disabled>Submit</button>
+  </form>
+
+  <script>
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const dobInput = document.getElementById('dob');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const genderInputs = document.getElementsByName('gender');
+    const membershipSelect = document.getElementById('membership');
+    const photoInput = document.getElementById('photo');
+    const agreeCheck = document.getElementById('agree');
+    const submitBtn = document.getElementById('submitBtn');
+
+    nameInput.addEventListener('input', function() {
+      if (nameInput.value.length < 3) {
+        document.getElementById('nameError').innerText = "❌ Name must be at least 3 characters.";
+        nameInput.style.border = "1px solid red";
+      } else {
+        document.getElementById('nameError').innerText = "";
+        nameInput.style.border = "1px solid green";
+      }
+      checkFormValid();
+    });
+
+    emailInput.addEventListener('input', function() {
+      let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!pattern.test(emailInput.value)) {
+        document.getElementById('emailError').innerText = "❌ Invalid email format.";
+        emailInput.style.border = "1px solid red";
+      } else {
+        document.getElementById('emailError').innerText = "";
+        emailInput.style.border = "1px solid green";
+      }
+      checkFormValid();
+    });
+
+    dobInput.addEventListener('change', function() {
+      let dob = new Date(dobInput.value);
+      let today = new Date();
+      if (dob > today) {
+        document.getElementById('dobError').innerText = "❌ Date of Birth cannot be in future.";
+        dobInput.style.border = "1px solid red";
+      } else {
+        document.getElementById('dobError').innerText = "";
+        dobInput.style.border = "1px solid green";
+      }
+      checkFormValid();
+    });
+
+    passwordInput.addEventListener('input', function() {
+      let pass = passwordInput.value;
+      let msg = "";
+      if (pass.length < 6) msg = "❌ Too short";
+      else if (!/\d/.test(pass)) msg = "❌ Must include number";
+      else msg = "✅ Strong password";
+
+      document.getElementById('passwordError').innerText = msg;
+      passwordInput.style.border = msg.includes('✅') ? "1px solid green" : "1px solid red";
+      checkFormValid();
+    });
+
+    confirmPasswordInput.addEventListener('input', function() {
+      if (confirmPasswordInput.value !== passwordInput.value) {
+        document.getElementById('confirmPasswordError').innerText = "❌ Passwords do not match.";
+        confirmPasswordInput.style.border = "1px solid red";
+      } else {
+        document.getElementById('confirmPasswordError').innerText = "";
+        confirmPasswordInput.style.border = "1px solid green";
+      }
+      checkFormValid();
+    });
+
+    photoInput.addEventListener('change', function() {
+      const file = photoInput.files[0];
+      if (file) {
+        const sizeOK = file.size <= 1 * 1024 * 1024;
+        const typeOK = ['image/jpeg', 'image/png'].includes(file.type);
+        if (!typeOK) {
+          document.getElementById('photoError').innerText = "❌ Only JPG or PNG allowed.";
+          photoInput.style.border = "1px solid red";
+        } else if (!sizeOK) {
+          document.getElementById('photoError').innerText = "❌ File size exceeds 1MB.";
+          photoInput.style.border = "1px solid red";
+        } else {
+          document.getElementById('photoError').innerText = "";
+          photoInput.style.border = "1px solid green";
+        }
+      }
+      checkFormValid();
+    });
+
+    membershipSelect.addEventListener('change', function() {
+      if (membershipSelect.value === "") {
+        document.getElementById('membershipError').innerText = "❌ Please select membership type.";
+        membershipSelect.style.border = "1px solid red";
+      } else {
+        document.getElementById('membershipError').innerText = "";
+        membershipSelect.style.border = "1px solid green";
+      }
+      checkFormValid();
+    });
+
+    agreeCheck.addEventListener('change', function() {
+      if (!agreeCheck.checked) {
+        document.getElementById('agreeError').innerText = "❌ Please agree to continue.";
+      } else {
+        document.getElementById('agreeError').innerText = "";
+      }
+      checkFormValid();
+    });
+  </script>
+</body>
+</html>
