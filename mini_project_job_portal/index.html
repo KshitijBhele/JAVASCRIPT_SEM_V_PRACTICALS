@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerConnect - Job Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CareerConnect</div>
+        <nav>
+            <ul>
+                <li><a href="#jobs">Jobs</a></li>
+                <li><a href="#calculator">Salary Calculator</a></li>
+                <li><a href="#grading">Skill Assessment</a></li>
+                <li><a href="#todo">My Tasks</a></li>
+                <li><a href="#application">Application Form</a></li>
+                <li><a href="#schedule">Interview Schedule</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">Dark Mode</button>
+    </header>
+
+    <main>
+        <section class="section" id="welcome">
+            <h2>Welcome to CareerConnect</h2>
+            <div id="welcomeMessage"></div>
+            <div id="environmentInfo"></div>
+        </section>
+
+        <section class="section" id="calculator">
+            <h2>Salary Calculator</h2>
+            <div class="form-group">
+                <label for="hourlyRate">Hourly Rate ($):</label>
+                <input type="number" id="hourlyRate" min="0" step="0.01" value="25">
+            </div>
+            <div class="form-group">
+                <label for="hoursWorked">Hours Worked:</label>
+                <input type="number" id="hoursWorked" min="0" step="0.5" value="40">
+            </div>
+            <div class="form-group">
+                <label for="taxRate">Tax Rate (%):</label>
+                <input type="number" id="taxRate" min="0" max="100" step="0.1" value="20">
+            </div>
+            <button id="calculateSalary">Calculate Salary</button>
+            <div id="salaryResult" class="form-group"></div>
+        </section>
+
+        <section class="section" id="grading">
+            <h2>Skill Assessment Grading</h2>
+            <div class="form-group">
+                <label for="testScore">Enter Test Score (0-100):</label>
+                <input type="number" id="testScore" min="0" max="100" value="85">
+            </div>
+            <button id="gradeScore">Grade Score</button>
+            <div id="gradeResult" class="form-group"></div>
+        </section>
+
+        <section class="section" id="palindrome">
+            <h2>Application ID Palindrome Checker</h2>
+            <div class="form-group">
+                <label for="applicationId">Enter Application ID:</label>
+                <input type="text" id="applicationId" value="12321">
+            </div>
+            <button id="checkPalindrome">Check Palindrome</button>
+            <div id="palindromeResult" class="form-group"></div>
+        </section>
+
+        <section class="section" id="jobs">
+            <h2>Available Jobs</h2>
+            <div class="form-group">
+                <label for="jobSearch">Search Jobs:</label>
+                <input type="text" id="jobSearch" placeholder="Enter job title or keyword">
+            </div>
+            <button id="searchJobs">Search</button>
+            <button id="applyDiscount">Apply Senior Discount</button>
+            <ul class="job-list" id="jobList"></ul>
+            <div id="cartTotal" class="form-group"></div>
+        </section>
+
+        <section class="section" id="validation">
+            <h2>Email Validation & Text Analysis</h2>
+            <div class="form-group">
+                <label for="emailInput">Email Address:</label>
+                <input type="email" id="emailInput" placeholder="Enter your email">
+                <div id="emailValidation" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="textAnalysis">Enter Text for Analysis:</label>
+                <textarea id="textAnalysis" rows="4" placeholder="Enter text to analyze"></textarea>
+            </div>
+            <button id="analyzeText">Analyze Text</button>
+            <div id="textAnalysisResult" class="form-group"></div>
+        </section>
+
+        <section class="section" id="todo">
+            <h2>My Job Search Tasks</h2>
+            <div class="form-group">
+                <label for="newTask">New Task:</label>
+                <input type="text" id="newTask" placeholder="Enter a new task">
+            </div>
+            <button id="addTask">Add Task</button>
+            <ul class="todo-list" id="todoList"></ul>
+        </section>
+
+        <section class="section" id="application">
+            <h2>Job Application Form</h2>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="applicantName">Full Name:</label>
+                    <input type="text" id="applicantName" placeholder="Enter your full name">
+                    <div id="nameError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="applicantEmail">Email:</label>
+                    <input type="email" id="applicantEmail" placeholder="Enter your email">
+                    <div id="emailError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="applicantAge">Age:</label>
+                    <input type="number" id="applicantAge" min="18" max="100" placeholder="Enter your age">
+                    <div id="ageError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="applicantResume">Upload Resume:</label>
+                    <input type="file" id="applicantResume">
+                    <div id="resumeError" class="error"></div>
+                </div>
+                <button type="submit">Submit Application</button>
+            </form>
+        </section>
+
+        <section class="section" id="schedule">
+            <h2>Interview Schedule</h2>
+            <button id="loadSchedule">Load Schedule</button>
+            <div class="table-container">
+                <table id="scheduleTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="timer">
+            <h2>Next Interview Countdown</h2>
+            <div class="timer" id="countdown">00:00:00</div>
+            <div class="form-group">
+                <label for="interviewDate">Interview Date & Time:</label>
+                <input type="datetime-local" id="interviewDate">
+            </div>
+            <button id="startTimer">Start Countdown</button>
+            <button id="stopTimer">Stop Countdown</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
