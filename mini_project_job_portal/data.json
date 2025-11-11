@@ -1,0 +1,97 @@
+{
+  "interviewSchedule": [
+    {
+      "id": 1,
+      "date": "2024-12-15",
+      "time": "10:00 AM",
+      "company": "TechCorp",
+      "position": "Frontend Developer",
+      "status": "Scheduled",
+      "location": "Remote",
+      "interviewer": "John Smith",
+      "duration": "60 minutes"
+    },
+    {
+      "id": 2,
+      "date": "2024-12-18",
+      "time": "2:30 PM",
+      "company": "DataSystems",
+      "position": "Backend Developer",
+      "status": "Scheduled",
+      "location": "Office",
+      "interviewer": "Sarah Johnson",
+      "duration": "45 minutes"
+    },
+    {
+      "id": 3,
+      "date": "2024-12-12",
+      "time": "9:00 AM",
+      "company": "CreativeMinds",
+      "position": "UX Designer",
+      "status": "Completed",
+      "location": "Remote",
+      "interviewer": "Mike Chen",
+      "duration": "90 minutes"
+    },
+    {
+      "id": 4,
+      "date": "2024-12-20",
+      "time": "11:00 AM",
+      "company": "AnalyticsPro",
+      "position": "Data Analyst",
+      "status": "Scheduled",
+      "location": "Office",
+      "interviewer": "Emily Davis",
+      "duration": "60 minutes"
+    },
+    {
+      "id": 5,
+      "date": "2024-12-25",
+      "time": "3:00 PM",
+      "company": "ManageWell",
+      "position": "Project Manager",
+      "status": "Scheduled",
+      "location": "Remote",
+      "interviewer": "Robert Brown",
+      "duration": "75 minutes"
+    }
+  ],
+  "jobListings": [
+    {
+      "id": 1,
+      "title": "Frontend Developer",
+      "company": "TechCorp",
+      "salary": 75000,
+      "category": "IT",
+      "experience": "Mid-level",
+      "location": "Remote",
+      "type": "Full-time",
+      "description": "We are looking for a skilled Frontend Developer to join our team.",
+      "requirements": ["React", "JavaScript", "CSS", "HTML5"]
+    },
+    {
+      "id": 2,
+      "title": "Backend Developer",
+      "company": "DataSystems",
+      "salary": 85000,
+      "category": "IT",
+      "experience": "Senior",
+      "location": "New York",
+      "type": "Full-time",
+      "description": "Join our backend team to build scalable applications.",
+      "requirements": ["Node.js", "Python", "SQL", "AWS"]
+    },
+    {
+      "id": 3,
+      "title": "UX Designer",
+      "company": "CreativeMinds",
+      "salary": 70000,
+      "category": "Design",
+      "experience": "Mid-level",
+      "location": "Remote",
+      "type": "Full-time",
+      "description": "Create amazing user experiences for our products.",
+      "requirements": ["Figma", "UI/UX", "User Research", "Prototyping"]
+    }
+  ]
+}
